@@ -448,6 +448,17 @@
 				this.widget = widget = link;
 			}
 			else {
+				widget.attr({'tabindex': 0});
+				widget.attr({
+					'aria-label': $(widget.context).html() + ' share button (opens in new window)'
+				});
+
+				var that = this;
+				widget.keypress(function(e) {
+					if (e.which === 13) {
+						that.click(that);
+					}
+				});
 				widget.on('click', $.proxy(this.click, this));
 			}
 
